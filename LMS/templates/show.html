@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time Data from CSV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Page Preloader -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header section -->
+<header class="header-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="site-logo">
+                    <img src="{% static 'img/logo.png' %}" alt="logo">
+                </div>
+                <div class="nav-switch">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <nav class="main-menu">
+                    <ul>
+                        <li><a href="{% url 'home'%}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About us</a></li>
+                        <li><a href="{% url 'courses' %}">Courses</a></li>
+                        <li><a href="{% url 'news'%}">News</a></li>
+                        <li><a href="{% url 'contact'%}">Contact</a></li>
+                        <a href="{% url 'attendence'%}" class="site-btn header-btn">Attendence</a>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header section end -->
+    <h1>Real-Time Data from CSV</h1>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="data-body">
+            <!-- Data rows will be inserted here -->
+        </tbody>
+    </table>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/circle-progress.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        // Function to fetch and update data from CSV file
+        function updateData() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const filePath = `C://Users//saroh//OneDrive//Desktop//html//${year}-${month}-${day}.csv`;
+
+            fetch(filePath)
+                .then(response => response.text())
+                .then(csv => {
+                    const rows = csv.split('\n').slice(1);  // Skip header row
+                    let html = '';
+                    rows.forEach(row => {
+                        const [name, time] = row.split(',');
+                        html += `<tr><td>${name}</td><td>${time}</td></tr>`;
+                    });
+                    document.getElementById('data-body').innerHTML = html;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Update data initially and then every 5 seconds
+        updateData();  // Initial update
+        setInterval(updateData, 5000);  // Update every 5 seconds
+    </script>
+</body>
+</html>
