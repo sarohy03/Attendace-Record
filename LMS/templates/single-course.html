@@ -37,14 +37,14 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="site-logo">
-						<img src="img/logo.png" alt="">
+						<img src="{% static 'img/logo.png' %}" alt="logo">
 					</div>
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
-					<a href="" class="site-btn header-btn">Login</a>
+					<!-- <a href="{% url 'attendence'%}" class="site-btn header-btn">Attendence</a> -->
 					<nav class="main-menu">
 						<ul>
 							<li><a href="{% url 'home'%}">Home</a></li>
@@ -52,6 +52,7 @@
 							<li><a href="{% url 'courses' %}">Courses</a></li>
 							<li><a href="{% url 'news'%}">News</a></li>
 							<li><a href="{% url 'contact'%}">Contact</a></li>
+							<li><a href="{% url 'display_csv_files'%}">All data</a></li>
 							<a href="{% url 'attendence'%}" class="site-btn header-btn">Attendence</a>
 						</ul>
 					</nav>

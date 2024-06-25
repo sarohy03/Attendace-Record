@@ -67,7 +67,7 @@
             color: #777;
         }
         .hero-section {
-            height: 100vh;
+            height: 70vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -129,40 +129,48 @@
     <div class="containerr">
         
         <div class="hero-textt text-white">
-            <h1>About Us</h1>
-            <p>Welcome to our Attendance Record System. Our goal is to provide a seamless and efficient way to manage attendance records. This project is a collaborative effort by three dedicated individuals: Hannan, Hira, and Khushbakht.</p>
-     
+            <h1>All data</h1>
           </div>
     </div>
 </section>
-<!-- Header section end -->
+
     <section class="about-section">
         <div class="container">
             
          </div>
     </section>
 
-    <section class="team-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 team-member">
-                    <!-- <img src="{% static 'img/team/hannan.jpg' %}" alt="Hannan"> -->
-                    <h3>Hannan</h3>
-                    <p>CEO</p>
-                </div>
-                <div class="col-lg-4 col-md-6 team-member">
-                    <!-- <img src="{% static 'img/team/hira.jpg' %}" alt="Hira"> -->
-                    <h3>Hira</h3>
-                    <p>CEO</p>
-                </div>
-                <div class="col-lg-4 col-md-6 team-member">
-                    <!-- <img src="{% static 'img/team/khushbakht.jpg' %}" alt="Khushbakht"> -->
-                    <h3>Khushbakht</h3>
-                    <p>CEO</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="bodyy">
+        
+        <title>CSV Files Content</title>
+        <style>
+            .bodyy {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        </style>
+    
+        {% for file_name, table_html in csv_data.items %}
+            <h2>{{ file_name }}</h2>
+            <div>{{ table_html|safe }}</div>
+        {% endfor %}
+    </div>
     
     <footer class="footer-section spad pb-0">
         <div class="footer-top">
@@ -238,3 +246,7 @@
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
+
+
+
+<!--  -->

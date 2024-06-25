@@ -1,12 +1,13 @@
 from django.urls import path
-from . import views
+from .views import home, courses, news, contact, about, NoFace, attendence, display_csv_files
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('courses/', views.courses, name='courses'),
-    path('news/', views.news, name='news'),
-    path('contact/', views.contact, name='contact'),
-    path('attendence/', views.attendence, name='attendence'),
-    path('about/', views.about, name='about'),  # Add this line
+    path('', home, name='home'),
+    path('courses/', courses, name='courses'),
+    path('news/', news, name='news'),
+    path('contact/', contact, name='contact'),
+    path('about/', about, name='about'),
+    path('noface/', NoFace, name='NoFace'),
+    path('attendence/', attendence, name='attendence'),
+    path('display-csv/', display_csv_files, name='display_csv_files'),
 ]
-
