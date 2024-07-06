@@ -13,7 +13,6 @@ The Attendance Record System is a robust application designed to streamline and 
 
 - **Backend:** Django (Python)
 - **Frontend:** HTML, JavaScript
-- **Database:** Django ORM
 
 ## Installation
 
